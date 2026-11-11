@@ -13,16 +13,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    # Install a pinned Miniforge; do not rely on Conda being bundled
+    # with the runner or update its base-environment plugins in place.
     - name: Set Up Python and Conda
-      uses: conda-incubator/setup-miniconda@v2
+      uses: conda-incubator/setup-miniconda@fc2d68f6413eb2d87b895e92f8584b5b94a10167 # v3
       with:
-        auto-update-conda: true
-        python-version: 3.11
+        miniforge-version: "25.3.1-0"
+        auto-update-conda: false
+        python-version: "3.11"
         channels: conda-forge
+        conda-remove-defaults: "true"
 
     - name: Set Up and Configure Environment
       run: |
-        conda install -n base -y mamba -c conda-forge
         mamba create -n openmc-env -y python=3.11 openmc hdf5 mpi4py numpy scipy pandas -c conda-forge
         source $(conda info --base)/etc/profile.d/conda.sh && conda activate openmc-env
         python -m pip install pylint pytest
