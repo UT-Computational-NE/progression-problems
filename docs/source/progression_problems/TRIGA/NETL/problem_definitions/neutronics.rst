@@ -127,17 +127,18 @@ provided :ref:`here <progression_problems_triga_netl_temperature_profile_derivat
 
    T(r) =
    \begin{cases}
-   T_{\max}, & 0 \le r \le R_{\mathrm{Zr}} \\
-   \displaystyle
-   T_b + \left(T_{\max} - T_b\right)
-   \dfrac{
+   T_{\max}, \quad 0 \le r \le R_{\mathrm{Zr}} \\
+   \begin{aligned}
+   &T_b + \left(T_{\max} - T_b\right) \times {} \\
+   &\quad \dfrac{
    \left(R_f^2-r^2\right)
    +2R_{\mathrm{Zr}}^2\ln\left(r/R_f\right)
    }{
    \left(R_f^2-R_{\mathrm{Zr}}^2\right)
    +2R_{\mathrm{Zr}}^2\ln\left(R_{\mathrm{Zr}}/R_f\right)
-   },
-   & R_{\mathrm{Zr}} < r \le R_f .
+   }, \\
+   &\quad R_{\mathrm{Zr}} < r \le R_f .
+   \end{aligned}
    \end{cases}
 
 where:

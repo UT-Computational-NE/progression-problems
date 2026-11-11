@@ -45,13 +45,12 @@ aluminum volume is
 
 .. math::
 
+   \begin{aligned}
    V_{\mathrm{Al}}
-   =
-   \pi\left(2.30759^2-2.23393^2\right)(124.77400)
-   +
-   \pi\left(2.38125^2-2.30759^2\right)(81.27660)
-   +
-   \pi\left(2.38125^2\right)(3.39830),
+   &= \pi\left(2.30759^2-2.23393^2\right)(124.77400) + {} \\
+   &\quad \pi\left(2.38125^2-2.30759^2\right)(81.27660) + {} \\
+   &\quad \pi\left(2.38125^2\right)(3.39830),
+   \end{aligned}
 
 or
 
@@ -137,13 +136,12 @@ volume of the detailed tube wall and its 0.12400-cm-thick lower closure. The det
 
 .. math::
 
+   \begin{aligned}
    V_{\mathrm{tube}}
-   =
-   \pi\left(0.79400^2-0.67000^2\right)(109.73188)
-   +
-   \pi\left(0.79400^2\right)(0.12400)
-   =
-   62.82702\ \mathrm{cm^3}.
+   &= \pi\left(0.79400^2-0.67000^2\right)(109.73188) + {} \\
+   &\quad \pi\left(0.79400^2\right)(0.12400) \\
+   &= 62.82702\ \mathrm{cm^3}.
+   \end{aligned}
 
 For the simplified tube inner radius :math:`R_{\mathrm{tube,i}}`, volume preservation requires
 
@@ -174,13 +172,12 @@ The detailed pneumatic sleeve consists of a 109.85588-cm-long annulus and a
 
 .. math::
 
+   \begin{aligned}
    V_{\mathrm{sleeve}}
-   =
-   \pi\left(0.95250^2-0.86350^2\right)(109.85588)
-   +
-   \pi\left(0.95250^2\right)(0.12850)
-   =
-   56.14632\ \mathrm{cm^3}.
+   &= \pi\left(0.95250^2-0.86350^2\right)(109.85588) + {} \\
+   &\quad \pi\left(0.95250^2\right)(0.12850) \\
+   &= 56.14632\ \mathrm{cm^3}.
+   \end{aligned}
 
 The detailed B-10-canister interior wall has a total axial length of 57.78500 cm. Its annular
 portion is 57.48500 cm long, and its implied solid lower closure is 0.30000 cm thick. Its
@@ -188,13 +185,12 @@ aluminum volume is therefore
 
 .. math::
 
+   \begin{aligned}
    V_{\mathrm{wall}}
-   =
-   \pi\left(1.03759^2-0.95250^2\right)(57.48500)
-   +
-   \pi\left(1.03759^2\right)(0.30000)
-   =
-   31.59594\ \mathrm{cm^3}.
+   &= \pi\left(1.03759^2-0.95250^2\right)(57.48500) + {} \\
+   &\quad \pi\left(1.03759^2\right)(0.30000) \\
+   &= 31.59594\ \mathrm{cm^3}.
+   \end{aligned}
 
 In the simplified geometry, the pneumatic sleeve is annular over the complete 110.28438-cm
 common length, and the B-10-canister interior wall is annular over its complete 57.78500-cm
@@ -203,11 +199,11 @@ preservation requires
 
 .. math::
 
-   \pi\left(0.95250^2-R_{\mathrm{sleeve,i}}^2\right)(110.28438)
-   +
-   \pi\left(1.03759^2-0.95250^2\right)(57.78500)
-   =
-   56.14630+31.59594.
+   \begin{aligned}
+   &\pi\left(0.95250^2-R_{\mathrm{sleeve,i}}^2\right)(110.28438) + {} \\
+   &\quad \pi\left(1.03759^2-0.95250^2\right)(57.78500) \\
+   &\quad = 56.14630+31.59594.
+   \end{aligned}
 
 Solving gives
 
@@ -348,15 +344,13 @@ annular portion of the lower region, and the 2.54000-cm-thick solid lower sectio
 
 .. math::
 
+   \begin{aligned}
    V_{\mathrm{B10}}
-   =
-   \pi\left(2.00660^2-1.03759^2\right)(22.86000)
-   +
-   \pi\left(2.04724^2-1.03759^2\right)(32.38500)
-   +
-   \pi\left(2.04724^2\right)(2.54000)
-   =
-   562.17383\ \mathrm{cm^3}.
+   &= \pi\left(2.00660^2-1.03759^2\right)(22.86000) + {} \\
+   &\quad \pi\left(2.04724^2-1.03759^2\right)(32.38500) + {} \\
+   &\quad \pi\left(2.04724^2\right)(2.54000) \\
+   &= 562.17383\ \mathrm{cm^3}.
+   \end{aligned}
 
 For the simplified B-10 outer radius :math:`R_{\mathrm{B10,o}}`, volume preservation requires
 
@@ -388,27 +382,23 @@ exterior wall, top cap, and lower end cap is
 
 .. math::
 
+   \begin{aligned}
    V_{\mathrm{Al}}
-   =
-   \pi\left(2.12090^2-0.95250^2\right)(2.54000)
-   +
-   \pi\left[
+   &= \pi\left(2.12090^2-0.95250^2\right)(2.54000) + {} \\
+   &\quad \pi\left[
    \left(1.03759^2-0.95250^2\right)
    +
    \left(2.12090^2-2.00660^2\right)
-   \right](22.86000)
-   +
-   \pi\left[
+   \right](22.86000) + {} \\
+   &\quad \pi\left[
    \left(1.03759^2-0.95250^2\right)
    +
    \left(2.12090^2-2.04724^2\right)
-   \right](32.38500)
-   +
-   \pi\left(2.12090^2-2.04724^2\right)(2.54000)
-   +
-   \pi\left(2.12090^2\right)(0.63500)
-   =
-   134.58585\ \mathrm{cm^3}.
+   \right](32.38500) + {} \\
+   &\quad \pi\left(2.12090^2-2.04724^2\right)(2.54000) + {} \\
+   &\quad \pi\left(2.12090^2\right)(0.63500) \\
+   &= 134.58585\ \mathrm{cm^3}.
+   \end{aligned}
 
 The simplified top cap includes both the exterior cap and interior wall and extends from the
 pneumatic-sleeve outer radius to the adjusted canister exterior radius. The interior wall is
@@ -417,17 +407,16 @@ radius :math:`R_{\mathrm{canister,o}}`, aluminum-volume preservation requires
 
 .. math::
 
-   \pi\left(R_{\mathrm{canister,o}}^2-0.95250^2\right)(2.64000)
-   +
-   \pi\left[
+   \begin{aligned}
+   &\pi\left(R_{\mathrm{canister,o}}^2-0.95250^2\right)(2.64000) + {} \\
+   &\quad \pi\left[
    \left(1.03759^2-0.95250^2\right)
    +
    \left(R_{\mathrm{canister,o}}^2-2.02019^2\right)
-   \right](55.24500)
-   +
-   \pi\left(R_{\mathrm{canister,o}}^2-2.02019^2\right)(3.17500)
-   =
-   134.58585.
+   \right](55.24500) + {} \\
+   &\quad \pi\left(R_{\mathrm{canister,o}}^2-2.02019^2\right)(3.17500) \\
+   &\quad = 134.58585.
+   \end{aligned}
 
 Solving gives
 
@@ -489,13 +478,12 @@ volume is
 
 .. math::
 
+   \begin{aligned}
    V_{\mathrm{Al}}
-   =
-   \pi\left(2.23393^2-2.03393^2\right)(3.00000)
-   +
-   \pi\left(2.23393^2\right)(0.49472)
-   =
-   15.80092\ \mathrm{cm^3}.
+   &= \pi\left(2.23393^2-2.03393^2\right)(3.00000) + {} \\
+   &\quad \pi\left(2.23393^2\right)(0.49472) \\
+   &= 15.80092\ \mathrm{cm^3}.
+   \end{aligned}
 
 For the simplified hollow-section radius :math:`R_{\mathrm{hollow}}`, volume preservation
 requires

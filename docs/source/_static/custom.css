@@ -169,18 +169,40 @@
 }
 
 /* Style for numbered equations */
+/* Keep oversized display equations inside the content column, including on phones. */
 div.math {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 1em;
+    max-width: 100%;
+    overflow-x: auto;
     position: relative;
     text-align: center;
     margin: 1em 0;
 }
 
-/* Position equation number on the right side */
+/* Scroll the equation independently while keeping its number visible. */
+div.math > mjx-container {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* Allow for MathJax glyphs extending beyond their layout boxes. */
+    padding-block: 1.5em;
+    margin-block: 0;
+}
+
+/* Reserve a separate column for equation numbers to prevent overlap. */
 .math .eqno {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    position: static;
+    transform: none;
+    float: none;
+    margin-left: 0;
 }
 
 /* Alternative styling if above doesn't work */
