@@ -177,18 +177,18 @@ Solving for :math:`C_2` and substituting back into the general solution gives
 .. math::
    :label: eq-triga-derivation-radial-temperature-dimensional
 
-   T(r)
-   =
-   T_b
-   +
+   \begin{aligned}
+   T(r) &= T_b + {} \\
+   &\quad
    \frac{\dot{q}}{4k}
    \left[
    R_f^2-r^2
    +
    2R_{\mathrm{Zr}}^2\ln\left(r/R_f\right)
    \right],
-   \qquad
-   R_{\mathrm{Zr}} < r \le R_f
+   \\
+   &\quad R_{\mathrm{Zr}} < r \le R_f
+   \end{aligned}
 
 This expression still contains the ratio :math:`\dot{q}/k`. To express the
 profile in terms of the imposed maximum fuel temperature, the expression is
@@ -197,12 +197,10 @@ the maximum fuel temperature occurs at :math:`r = R_{\mathrm{Zr}}`:
 
 .. math::
 
-   T_{\max}
-   =
-   T(R_{\mathrm{Zr}})
-   =
-   T_b
-   +
+   \begin{aligned}
+   T_{\max} &= T(R_{\mathrm{Zr}}) \\
+   &= T_b + {} \\
+   &\quad
    \frac{\dot{q}}{4k}
    \left[
    R_f^2-R_{\mathrm{Zr}}^2
@@ -210,6 +208,7 @@ the maximum fuel temperature occurs at :math:`r = R_{\mathrm{Zr}}`:
    2R_{\mathrm{Zr}}^2
    \ln\left(R_{\mathrm{Zr}}/R_f\right)
    \right]
+   \end{aligned}
 
 Rearranging gives
 
@@ -233,10 +232,9 @@ fuel-meat temperature profile:
 .. math::
    :label: eq-triga-derivation-radial-temperature-profile-derived
 
-   T(r)
-   =
-   T_b
-   +
+   \begin{aligned}
+   T(r) &= T_b + {} \\
+   &\quad
    \left(T_{\max}-T_b\right)
    \frac{
    \left(R_f^2-r^2\right)
@@ -247,8 +245,9 @@ fuel-meat temperature profile:
    +
    2R_{\mathrm{Zr}}^2\ln\left(R_{\mathrm{Zr}}/R_f\right)
    },
-   \qquad
-   R_{\mathrm{Zr}} < r \le R_f
+   \\
+   &\quad R_{\mathrm{Zr}} < r \le R_f
+   \end{aligned}
 
 
 
@@ -297,19 +296,20 @@ Substituting the fuel-meat temperature profile from
 
 .. math::
 
-   T_i
-   =
+   \begin{aligned}
+   T_i &=
    \frac{
    2
    }{
    r_i^2-r_{i-1}^2
    }
-   \int_{r_{i-1}}^{r_i}
+ \times {} \\
+   &\quad \int_{r_{i-1}}^{r_i}
    \left[
-   T_b
-   +
-   \left(T_{\max}-T_b\right)
-   \frac{
+   \begin{aligned}
+   &T_b +
+   \left(T_{\max}-T_b\right) \times {} \\
+   &\quad \frac{
    \left(R_f^2-r^2\right)
    +
    2R_{\mathrm{Zr}}^2\ln\left(r/R_f\right)
@@ -318,8 +318,10 @@ Substituting the fuel-meat temperature profile from
    +
    2R_{\mathrm{Zr}}^2\ln\left(R_{\mathrm{Zr}}/R_f\right)
    }
+   \end{aligned}
    \right]
    r\,dr
+   \end{aligned}
 
 Define the denominator of the normalized temperature profile as
 
@@ -335,8 +337,8 @@ Then the ring-averaged temperature may be written as
 
 .. math::
 
-   T_i
-   =
+   \begin{aligned}
+   T_i &=
    T_b
    +
    \left(T_{\max}-T_b\right)
@@ -345,13 +347,15 @@ Then the ring-averaged temperature may be written as
    }{
    \left(r_i^2-r_{i-1}^2\right)D_T
    }
-   \int_{r_{i-1}}^{r_i}
+ \times {} \\
+   &\quad \int_{r_{i-1}}^{r_i}
    \left[
    \left(R_f^2-r^2\right)
    +
    2R_{\mathrm{Zr}}^2\ln\left(r/R_f\right)
    \right]
    r\,dr
+   \end{aligned}
 
 The remaining integral can be evaluated analytically by defining
 
@@ -371,8 +375,8 @@ The remaining integral can be evaluated analytically by defining
    &=
    \frac{R_f^2 r^2}{2}
    -
-   \frac{r^4}{4}
-   +
+   \frac{r^4}{4} + {} \\
+   &\quad
    R_{\mathrm{Zr}}^2 r^2\ln\left(r/R_f\right)
    -
    \frac{R_{\mathrm{Zr}}^2 r^2}{2}
@@ -383,10 +387,9 @@ Using this antiderivative, the final closed-form ring-averaged temperature is
 .. math::
    :label: eq-triga-derivation-ring-average-temperature-closed-form
 
-   T_i
-   =
-   T_b
-   +
+   \begin{aligned}
+   T_i &= T_b + {} \\
+   &\quad
    \left(T_{\max}-T_b\right)
    \frac{
    2\left[
@@ -396,6 +399,7 @@ Using this antiderivative, the final closed-form ring-averaged temperature is
    \left(r_i^2-r_{i-1}^2\right)
    D_T
    }
+   \end{aligned}
 
 This expression applies to annular rings in the U-ZrH fuel meat, where
 :math:`R_{\mathrm{Zr}} < r_{i-1} < r_i \le R_f`. If the central zirconium
