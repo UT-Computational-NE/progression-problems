@@ -705,9 +705,8 @@ def _apply_openmc_overlay(core:                mpactpy.Core,
     lattices_to_overlay = {l for l in core.lattices if modules_to_overlay.intersection(l.modules)}
     assemblies_to_overlay = {a for a in core.assemblies if lattices_to_overlay.intersection(a.lattices)}
 
-    # Create overlay masks
-    pin_mask:      mpactpy.Pin.OverlayMask      = set(core.materials)
-    module_mask:   mpactpy.Module.OverlayMask   = {pin:      pin_mask      for pin      in pins_to_overlay}
+    # Replace every material region in each selected rectangular pin.
+    module_mask:   mpactpy.Module.OverlayMask   = {pin:      None          for pin      in pins_to_overlay}
     lattice_mask:  mpactpy.Lattice.OverlayMask  = {module:   module_mask   for module   in modules_to_overlay}
     assembly_mask: mpactpy.Assembly.OverlayMask = {lattice:  lattice_mask  for lattice  in lattices_to_overlay}
     include_only:  mpactpy.Core.OverlayMask     = {assembly: assembly_mask for assembly in assemblies_to_overlay}
@@ -791,7 +790,8 @@ def _set_cell(assembly:            Optional[mpactpy.Assembly],
     ) -> Optional[mpactpy.Assembly]:
 
     rect = Rectangle(w=side_lengths[0], h=side_lengths[1])
-    if reactor.shroud.contains(rect, radial_location) and assembly is not None:
+    inside_shroud = reactor.shroud.contains(rect, radial_location)
+    if inside_shroud and assembly is not None:
         return assembly
 
     if not Circle(outer_boundary_radius).contains(rect, other_center=radial_location):
@@ -801,13 +801,17 @@ def _set_cell(assembly:            Optional[mpactpy.Assembly],
 
     target_thicknesses: List[float] = []
     if excore_features in ["rsr", "beamports"]:
-        if reactor.shroud.intersects(rect, radial_location):
+        crosses_shroud = reactor.shroud.intersects(rect, radial_location)
+        if crosses_shroud:
             target_thicknesses.append(excore_specs.shroud.target_thicknesses["radial"])
-        if excore_features == "rsr" and reactor.rsr_cavity_intersects(rect, radial_location):
+        crosses_rsr = excore_features == "rsr" and reactor.rsr_cavity_intersects(rect, radial_location)
+        if crosses_rsr:
             target_thicknesses.append(excore_specs.rsr_cavity.target_thicknesses["radial"])
         if excore_features == "rsr" and reactor.rsr_tube_intersects(rect, radial_location):
             target_thicknesses.append(excore_specs.rsr_tube.target_thicknesses["radial"])
-        if reactor.reflector_intersects(rect, radial_location):
+        # The RSR footprint replaces reflector graphite only in the RSR model.
+        if (not (inside_shroud or crosses_shroud or crosses_rsr)
+                and rect.intersects(reactor.reflector.outer_boundary, self_center=radial_location)):
             target_thicknesses.append(excore_specs.reflector.target_thicknesses["radial"])
         if excore_features == "beamports":
             for bp in (1, 2, 3, 4):
