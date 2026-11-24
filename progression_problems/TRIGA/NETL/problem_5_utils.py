@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Sequence
 
 import openmc
 import mpactpy
@@ -75,7 +75,10 @@ def write_mpact_input(reactor:             Reactor,
                       filename:            str = "mpact.inp",
                       states:              Optional[List[Dict[str, str]]] = None,
                       xsec_settings:       Optional[Dict[str, str]] = None,
-                      options:             Optional[Dict[str, str]] = None) -> None:
+                      options:             Optional[Dict[str, str]] = None,
+                      *,
+                      separate_materials:  Optional[Sequence[str]] = None,
+) -> None:
     """Write an MPACT input file for the TRIGA NETL reactor.
 
     Parameters
@@ -93,6 +96,9 @@ def write_mpact_input(reactor:             Reactor,
         The cross section settings to use in the MPACT input.
     options : Dict[str, str]
         The options settings to use in the MPACT input.
+    separate_materials : Optional[Sequence[str]]
+        Case-insensitive material name substrings to keep separate. By default,
+        all equivalent materials share IDs.
     """
 
     specs = (reactor_build_specs if reactor_build_specs is not None else
@@ -111,6 +117,8 @@ def write_mpact_input(reactor:             Reactor,
 
     options["bound_cond"] = "0 0 0 0 0 0"
 
+    keep = mpactpy.Material.select_by_name(geometry.materials, separate_materials or ())
+    geometry = geometry.with_shared_materials(keep=keep)
     mpact_model = mpactpy.Model(geometry, states, xsec_settings, options)
     with open(filename, "w") as file:
         file.write(mpact_model.write_to_string("TRIGA", indent=4))

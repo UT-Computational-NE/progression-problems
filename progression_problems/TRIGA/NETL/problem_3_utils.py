@@ -494,6 +494,8 @@ def write_mpact_input(reactor:             Reactor,
                       xsec_settings:       Optional[Dict[str, str]] = None,
                       options:             Optional[Dict[str, str]] = None,
                       three_element_pincell_section: Optional[str | Tuple[str, int]] = "lower_b10_region",
+                      *,
+                      separate_materials: Optional[Sequence[str]] = None,
 ) -> None:
     """Write an MPACT input file for the TRIGA NETL reactor.
 
@@ -527,6 +529,9 @@ def write_mpact_input(reactor:             Reactor,
         bottom-to-top order. A string selects index 0. Defaults to
         ``"lower_b10_region"`` for the detailed modified irradiator. Required
         when an irradiator is present.
+    separate_materials : Optional[Sequence[str]]
+        Case-insensitive material name substrings to keep separate. By default,
+        all equivalent materials share IDs.
     """
 
     specs = (reactor_build_specs if reactor_build_specs is not None else
@@ -556,6 +561,8 @@ def write_mpact_input(reactor:             Reactor,
         state["tinlet"] = state.get("tinlet", f"{reactor.pool.material.temperature} K")
     options["bound_cond"] = "0 0 0 0 1 1"
 
+    keep = mpactpy.Material.select_by_name(geometry.materials, separate_materials or ())
+    geometry = geometry.with_shared_materials(keep=keep)
     mpact_model = mpactpy.Model(geometry, states, xsec_settings, options)
     with open(filename, "w") as file:
         file.write(mpact_model.write_to_string("TRIGA", indent=4))
